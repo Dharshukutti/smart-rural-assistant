@@ -6,7 +6,6 @@ from flask import Flask, render_template, request, jsonify, session, redirect, u
 import speech_recognition as sr
 from gtts import gTTS
 import imageio_ffmpeg as im_ffmpeg
-import openai
 
 app = Flask(__name__)
 app.secret_key = "rural_assistant_secret_key" # Change to a safe key in production
@@ -17,24 +16,9 @@ os.makedirs("static/uploads", exist_ok=True)
 
 FFMPEG_EXE = im_ffmpeg.get_ffmpeg_exe()
 
-# Load dataset (keeping for potential extended logic, but primary is AI)
-def load_dataset():
-    try:
-        if os.path.exists("data.json"):
-            with open("data.json", "r", encoding="utf-8") as f:
-                return json.load(f)
-    except Exception as e:
-        print(f"Error loading data.json: {e}")
-    return []
-
-dataset = load_dataset()
-
 # =========================
-# AI CONFIGURATION
+# CHATBOT LOGIC (RULE-BASED)
 # =========================
-# IMPORTANT: Use your actual OpenAI API Key
-OPENAI_API_KEY = "sk-REPLACE_WITH_YOUR_KEY"
-client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 def get_fallback_answer(question, domain, lang, lat=None, lon=None):
     """Expanded rule-based engine covering a broad range of rural topics with domain-specific logic."""
@@ -111,7 +95,7 @@ def get_fallback_answer(question, domain, lang, lat=None, lon=None):
     # 5. SCHEMES
     elif any(kw in d for kw in ["scheme", "yojana", "திட்டம்", "योजना"]):
         if any(w in text for w in ["document", "ஆவணம்", "proof", "आधार", "aadhaar"]):
-            res = {"en": "You generally need Aadhaar, bank account, and income proof for most schemes.", 
+            res = {"en": "You need Aadhaar, bank account, and income proof for most schemes.", 
                    "ta": "பெரும்பாலான திட்டங்களுக்கு உங்களுக்கு ஆதார், வங்கி கணக்கு மற்றும் வருமானச் சான்று தேவை.", 
                    "hi": "अधिकांश योजनाओं के लिए आपको आधार, बैंक खाता और आय प्रमाण की आवश्यकता होती है।"}
         elif any(w in text for w in ["apply", "விண்ணப்பிக்க", "how"]):
@@ -122,71 +106,52 @@ def get_fallback_answer(question, domain, lang, lat=None, lon=None):
             res = {"en": "The government provides subsidies for farmers, housing, and LPG schemes like Ujjwala.", 
                    "ta": "விவசாயிகள், வீடு மற்றும் உஜ்வலா போன்ற எல்பிஜி திட்டங்களுக்கு அரசு மானியம் வழங்குகிறது.", 
                    "hi": "सरकार किसानों, आवास और उज्ज्वला जैसी एलपीजी योजनाओं के लिए सब्सिडी प्रदान करती है।"}
+        elif any(w in text for w in ["loan", "கடன்", "कर्ज", "kisan"]):
+            res = {"en": "PM-Kisan Yojana provides ₹6,000/year to farmers. KCC loans are available at 4% interest.", 
+                   "ta": "PM-கிசான் திட்டத்தில் ஆண்டுக்கு ₹6,000 வழங்கப்படுகிறது. KCC கடன்கள் 4% வட்டியில் கிடைக்கும்.", 
+                   "hi": "पीएम-किसान योजना किसानों को ₹6,000/वर्ष प्रदान करती है। केसीसी ऋण 4% ब्याज पर उपलब्ध हैं।"}
         else:
-            res = {"en": "Various government schemes like PM-Kisan are available for rural development and welfare.", 
-                   "ta": "கிராமப்புற வளர்ச்சி மற்றும் நலனுக்காக PM-கிசான் போன்ற பல்வேறு அரசு திட்டங்கள் உள்ளன.", 
-                   "hi": "ग्रामीण विकास के लिए पीएम-किसान जैसी कई सरकारी योजनाएं उपलब्ध हैं।"}
+            res = {"en": "Check PM-Kisan and PM-Awas portals for rural welfare benefits and ration card renewal.", 
+                   "ta": "PM-கிசான் மற்றும் PM-ஆவாஸ் இணையதளங்களில் அரசு நலத்திட்டங்களைப் பார்க்கவும்.", 
+                   "hi": "पीएम-किसान और पीएम-आवास पोर्टल पर जाकर सरकारी योजनाओं का लाभ उठाएं।"}
         return res.get(lang, res["en"])
 
     # 6. FARMING
     elif any(kw in d for kw in ["farm", "agri", "crop", "விவசாயம்", "खेती"]):
-        res = {"en": "Use organic fertilizers for healthy soil and follow the seasonal crop calendar. Contact Kisan Helpline: 1800-180-1551.", 
-               "ta": "மண் வளத்திற்கு இயற்கை உரங்களைப் பயன்படுத்துங்கள் மற்றும் பருவ கால பயிர் காலெண்டரைப் பின்பற்றுங்கள். விவசாய உதவி: 1800-180-1551.", 
-               "hi": "स्वस्थ मिट्टी के लिए जैविक खाद का प्रयोग करें और मौसमी फसल कैलेंडर का पालन करें। किसान हेल्पलाइन: 1800-180-1551।"}
+        if any(w in text for w in ["soil", "மண்", "मिट्टी"]):
+            res = {"en": "Get your soil tested at the nearest Krishi Kendra. Healthy soil needs proper NPK balance.", 
+                   "ta": "உங்கள் மண் பரிசோதனையை அருகிலுள்ள கிருஷி கேந்திராவில் செய்யுங்கள்.", 
+                   "hi": "नजदीकी कृषि केंद्र पर अपनी मिट्टी की जांच कराएं।"}
+        elif any(w in text for w in ["fertilizer", "உரம்", "खाद"]):
+            res = {"en": "Use organic compost and avoid excessive chemical fertilizers to maintain soil fertility.", 
+                   "ta": "இயற்கை உரங்களைப் பயன்படுத்துங்கள் மற்றும் ரசாயன உரங்களைத் தவிர்க்கவும்.", 
+                   "hi": "जैविक खाद का प्रयोग करें और रासायनिक खादों से बचें।"}
+        elif any(w in text for w in ["crop", "பயிர்", "फसल"]):
+            res = {"en": "Choose crops based on the current season. Currently, it's a good time for seasonal vegetables and pulses.", 
+                   "ta": "தற்போதைய பருவத்திற்கு ஏற்ற பயிர்களைத் தேர்ந்தெடுக்கவும்.", 
+                   "hi": "वर्तमान मौसम के आधार पर फसलें चुनें।"}
+        else:
+            res = {"en": "Use organic fertilizers for healthy soil and follow the seasonal crop calendar. Contact Kisan Helpline: 1800-180-1551.", 
+                   "ta": "மண் வளத்திற்கு இயற்கை உரங்களைப் பயன்படுத்துங்கள். விவாசாய உதவி: 1800-180-1551.", 
+                   "hi": "स्वस्थ मिट्टी के लिए जैविक खाद का प्रयोग करें। किसान हेल्पलाइन: 1800-180-1551।"}
         return res.get(lang, res["en"])
 
-    # FINAL FALLBACK (If no domain matches or it's a general question)
+    # FINAL FALLBACK (No domain matches or it's a general question)
     fallback = {
-        "en": "I'm available to help with Weather, Market prices, Health tips, Emergency help, and Schemes. Please select a category.",
-        "ta": "வானிலை, சந்தை விலை, சுகாதார குறிப்புகள், அவசர உதவி மற்றும் திட்டங்களுக்கு நான் உதவ முடியும். தயவுசெய்து ஒரு வகைப்பாட்டைத் தேர்ந்தெடுக்கவும்.",
-        "hi": "मैं मौसम, मंडी भाव, स्वास्थ्य सुझाव, आपातकालीन सहायता और योजनाओं में मदद कर सकता हूं। कृपया एक श्रेणी चुनें।"
+        "en": "I can help with Weather, Market prices, Health tips, Farming help, Emergency services, and Government schemes. What would you like to know?",
+        "ta": "வானிலை, சந்தை விலை, சுகாதார குறிப்புகள், விவசாய உதவி, அவசர உதவி மற்றும் திட்டங்களுக்கு நான் உதவ முடியும். நீங்கள் என்ன அறிய விரும்புகிறீர்கள்?",
+        "hi": "मैं मौसम, मंडी भाव, स्वास्थ्य सुझाव, खेती, आपातकालीन सहायता और योजनाओं में मदद कर सकता हूं। आप क्या जानना चाहते हैं?"
     }
     return fallback.get(lang, fallback["en"])
 
 # =========================
-# CHATBOT MAIN (AI DRIVEN)
+# CHATBOT MAIN
 # =========================
 def chatbot(question, lang="en", lat=None, lon=None, domain="General"):
-    """Corrected domain-first rule engine with specific logic."""
-    # 1. ALWAYS Try the Rule Engine FIRST
-    rule_answer = get_fallback_answer(question, domain, lang, lat, lon)
-    
-    # Check if the answer is the generic fallback message
-    fallback_seeds = ["available to help", "உதவ முடியும்", "सहायता और योजनाओं"]
-    is_fallback = any(seed in rule_answer for seed in fallback_seeds)
-
-    if not is_fallback:
-        return rule_answer
-
-    # 2. Otherwise, Try AI (AI acts as a smart backup for complex questions)
-    prompt = f"""You are a rural digital assistant.
-User question: {question}
-Domain: {domain}
-Language: {lang}
-
-IMPORTANT:
-- Use location ONLY for weather and emergency.
-- Stay strictly in domain.
-- Answer clearly and shortly in {lang}.
-
-Give a clear, short, useful answer."""
-
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are a rural assistant. Never mix languages. No default greetings."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=250,
-            temperature=0.7
-        )
-        answer = response.choices[0].message.content.strip()
-        return answer if answer else rule_answer
-            
-    except Exception as e:
-        print(f"Chatbot error: {e}")
-        return rule_answer
+    """Pure rule-based chatbot for offline support."""
+    # Process the question through the rule engine
+    answer = get_fallback_answer(question, domain, lang, lat, lon)
+    return answer
 
 # =========================
 # AUDIO UTILITIES

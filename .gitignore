@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-__pycache__
-voice/
-=======
-__pycache__
-voice/
->>>>>>> 252c01559f9233eacaec00a12a70d29cc3954147
-uploads/
+__pycache__/
+static/voice/
+static/uploads/
+.env
+*.pyc
