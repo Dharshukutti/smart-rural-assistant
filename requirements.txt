@@ -1,0 +1,4 @@
+flask
+gtts
+speechrecognition
+imageio-ffmpeg
