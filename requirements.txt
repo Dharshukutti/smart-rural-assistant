@@ -2,4 +2,3 @@ flask
 gtts
 speechrecognition
 imageio-ffmpeg
-open
