@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Rural Digital Assistant</title>
+    <!-- Assets -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <!-- Sticky Header Navbar -->
+        <header class="nav-header">
+            <div class="brand-section">
+                <div class="logo-icon">
+                    <i data-lucide="leaf"></i>
+                </div>
+                <h1>Smart Rural Assistant</h1>
+            </div>
+            <a href="/logout" class="logout-pill">Logout</a>
+        </header>
+
+        <!-- Language Pill Selector -->
+        <section class="lang-tray">
+            <div class="lang-pill active" data-lang="en" onclick="changeLanguage('en')">EN</div>
+            <div class="lang-pill" data-lang="ta" onclick="changeLanguage('ta')">தமிழ்</div>
+            <div class="lang-pill" data-lang="hi" onclick="changeLanguage('hi')">हिंदी</div>
+        </section>
+
+        <!-- Main Display Card -->
+        <section class="main-display-card">
+            <div id="chat-history" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;">
+                <div class="bubble assistant-bubble">
+                    <b id="welcome-text">Namaste! 🙏</b><br>
+                    <span id="welcome-sub">Welcome to your rural assistant. How can I help you?</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Domain Feature Grid (6 Cards) -->
+        <section class="domain-grid">
+            <div class="domain-card" onclick="askQuick('weather')">
+                <i data-lucide="cloud-sun"></i>
+                <span id="card1">Weather</span>
+            </div>
+            <div class="domain-card" onclick="askQuick('market')">
+                <i data-lucide="bar-chart-3"></i>
+                <span id="card2">Market</span>
+            </div>
+            <div class="domain-card" onclick="askQuick('health')">
+                <i data-lucide="heart-pulse"></i>
+                <span id="card3">Health</span>
+            </div>
+            <div class="domain-card" onclick="askQuick('farming')">
+                <i data-lucide="sprout"></i>
+                <span id="card4">Farming</span>
+            </div>
+            <div class="domain-card" onclick="askQuick('schemes')">
+                <i data-lucide="landmark"></i>
+                <span id="card5">Schemes</span>
+            </div>
+            <div class="domain-card" onclick="askQuick('emergency')">
+                <i data-lucide="alert-triangle"></i>
+                <span id="card6">Emergency</span>
+            </div>
+        </section>
+
+        <!-- Status & Waveform Indicators -->
+        <div id="status-bar" class="status-text">Listening...</div>
+        <div id="waveform" class="waveform-box">
+            <div class="wave-line" style="animation-delay: 0s;"></div>
+            <div class="wave-line" style="animation-delay: 0.1s;"></div>
+            <div class="wave-line" style="animation-delay: 0.2s;"></div>
+            <div class="wave-line" style="animation-delay: 0.3s;"></div>
+            <div class="wave-line" style="animation-delay: 0.15s;"></div>
+            <div class="wave-line" style="animation-delay: 0.25s;"></div>
+            <div class="wave-line" style="animation-delay: 0.05s;"></div>
+        </div>
+
+        <!-- Tool Action Buttons -->
+        <section class="action-row">
+            <div class="action-btn" id="location-btn" onclick="getLocation()">
+                <i data-lucide="map-pin"></i>
+                <span>📍 Location</span>
+            </div>
+            
+            <div class="action-btn" onclick="document.getElementById('imageInput').click()">
+                <input type="file" id="imageInput" accept="image/*" hidden onchange="handleImageSelect()">
+                <i data-lucide="camera"></i>
+                <span>🌱 Image Scan</span>
+            </div>
+        </section>
+
+        <section id="image-preview-container">
+            <img id="image-preview" src="" alt="Crop Preview">
+            <div class="status-text visible" id="image-status" style="margin-top: 10px; color: var(--primary);">
+                 <button onclick="uploadImage()" style="background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 10px; font-weight: 700; cursor: pointer;">Analyze Image</button>
+            </div>
+        </section>
+
+        <!-- Floating Fixed Mic Bottom Button -->
+        <div class="mic-shell">
+            <button id="mic-btn" class="btn-mic-pro" onclick="toggleVoice()">
+                <i data-lucide="mic" id="mic-icon"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Logic Script -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
