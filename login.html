@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Smart Rural Assistant</title>
+    <!-- Assets -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="login-body">
+
+    <div class="auth-container">
+        <!-- Logo Section -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="logo-circle" style="width: 70px; height: 70px; margin: 0 auto 15px;">
+                <i data-lucide="leaf" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h1 style="color: var(--primary); font-size: 24px; font-weight: 700; margin-bottom: 5px;">Smart Rural Digital Assistant</h1>
+            <p style="color: var(--text-muted); font-size: 14px;">Please login to continue</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="glass-card" style="padding-top: 40px;">
+            {% if error %}
+            <div class="error-msg">
+                <i data-lucide="alert-circle" style="width: 14px; display: inline-block; vertical-align: middle; margin-right: 5px;"></i>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-input" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter password" required>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button type="submit" class="btn-primary">Login Now</button>
+                </div>
+            </form>
+
+            <div style="margin-top: 25px; text-align: center; border-top: 1px solid #f0f4f2; padding-top: 20px;">
+                <p style="font-size: 12px; color: #999;">Demo Credentials: admin / 1234</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

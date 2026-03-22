@@ -1,0 +1,50 @@
+[
+  {
+    "keywords": ["weather", "rain", "temperature", "climate", "forecast", "cloudy", "sunny"],
+    "en": "Today the weather is partly cloudy with a temperature of 32°C. Rain is expected tomorrow evening. Good day for harvesting crops.",
+    "ta": "இன்று பகுதி மேகமூட்டமாக 32°C வெப்பநிலை உள்ளது. நாளை மாலை மழை எதிர்பார்க்கப்படுகிறது. அறுவடைக்கு நல்ல நாள்.",
+    "hi": "आज का मौसम: आंशिक बादल, 32°C. कल शाम बारिश की संभावना है। फसल कटाई के लिए अच्छा दिन।"
+  },
+  {
+    "keywords": ["farm", "crop", "agriculture", "seed", "sow", "harvest", "fertilizer", "irrigation", "rabi", "kharif", "pest", "soil"],
+    "en": "It is the Rabi season. Good time to sow wheat and mustard. Use organic fertilizers for best results. Drip irrigation saves 40% water. Call Kisan Helpline: 1800-180-1551.",
+    "ta": "ராபி பருவம் தொடங்கிவிட்டது. கோதுமை மற்றும் கடுகு விதைக்கலாம். இயற்கை உரம் பயன்படுத்துங்கள். சொட்டு நீர் பாசனம் 40% நீர் சேமிக்கும். விவசாய உதவி: 1800-180-1551.",
+    "hi": "रबी का मौसम चल रहा है। गेहूं और सरसों बोने का सही समय है। जैविक खाद का उपयोग करें। ड्रिप सिंचाई से 40% पानी बचत। किसान हेल्पलाइन: 1800-180-1551।"
+  },
+  {
+    "keywords": ["market", "price", "rate", "mandi", "wheat", "rice", "onion", "tomato", "vegetable", "grain"],
+    "en": "Today's market prices: Wheat ₹2,275/quintal, Rice ₹2,040/quintal, Onion ₹18/kg, Tomato ₹25/kg. Wheat prices are up 3% this week.",
+    "ta": "இன்றைய சந்தை விலை: கோதுமை ₹2,275/குவிண்டால், அரிசி ₹2,040/குவிண்டால், வெங்காயம் ₹18/கிலோ, தக்காளி ₹25/கிலோ. கோதுமை 3% உயர்வு.",
+    "hi": "आज के बाज़ार भाव: गेहूं ₹2,275/क्विंटल, चावल ₹2,040/क्विंटल, प्याज ₹18/किलो, टमाटर ₹25/किलो। गेहूं इस हफ्ते 3% ऊपर।"
+  },
+  {
+    "keywords": ["health", "doctor", "hospital", "medicine", "sick", "fever", "phc", "dengue", "mosquito", "water", "hygiene"],
+    "en": "Health Tips: Drink 8 glasses of water daily. Use mosquito nets - dengue season. Free medicines available at PHC center. Health helpline: 104. Nearest hospital: 5 km.",
+    "ta": "சுகாதார குறிப்பு: தினமும் 8 கிளாஸ் தண்ணீர் குடிக்கவும். கொசு வலை பயன்படுத்துங்கள். PHC-யில் இலவச மருந்துகள் கிடைக்கும். சுகாதார உதவி எண்: 104. அருகிலுள்ள மருத்துவமனை: 5 கிமீ.",
+    "hi": "स्वास्थ्य सुझाव: रोज़ 8 गिलास पानी पियें। मच्छरदानी लगाएं - डेंगू का मौसम। PHC में मुफ्त दवाइयां मिलती हैं। स्वास्थ्य हेल्पलाइन: 104। नज़दीकी अस्पताल: 5 किमी।"
+  },
+  {
+    "keywords": ["scheme", "government", "yojana", "subsidy", "kisan", "awas", "ration", "lpg", "jan dhan", "pm", "benefit", "welfare"],
+    "en": "Government Schemes: PM Kisan Yojana gives ₹6,000/year directly to farmers. PM Awas Yojana gives housing subsidy up to ₹1.5 lakh. Free LPG under Ujjwala Yojana. Ration card renewal open till Dec 31.",
+    "ta": "அரசு திட்டங்கள்: PM கிசான் திட்டத்தில் ₹6,000/ஆண்டு விவசாயிகளுக்கு நேரடியாக வழங்கப்படுகிறது. PM வீட்டு திட்டத்தில் ₹1.5 லட்சம் மானியம். உஜ்வலா திட்டத்தில் இலவச LPG. ரேஷன் கார்டு புதுப்பிப்பு டிச 31 வரை.",
+    "hi": "सरकारी योजनाएं: PM किसान योजना में ₹6,000/साल सीधे खाते में मिलते हैं। PM आवास योजना में ₹1.5 लाख तक सब्सिडी। उज्ज्वला योजना में मुफ्त LPG। राशन कार्ड नवीनीकरण 31 दिसंबर तक।"
+  },
+  {
+    "keywords": ["emergency", "help", "police", "ambulance", "fire", "accident", "women", "child", "helpline", "disaster", "danger"],
+    "en": "Emergency Numbers: Police 100, Ambulance 108, Fire Brigade 101, Women Helpline 181, Child Helpline 1098, Power Emergency 1912, Disaster Management 1070.",
+    "ta": "அவசர எண்கள்: காவல் 100, ஆம்புலன்ஸ் 108, தீயணைப்பு 101, பெண்கள் உதவி 181, குழந்தை உதவி 1098, மின்சாரம் 1912, பேரிடர் 1070.",
+    "hi": "आपातकालीन नंबर: पुलिस 100, एम्बुलेंस 108, अग्निशमन 101, महिला हेल्पलाइन 181, चाइल्ड हेल्पलाइन 1098, बिजली 1912, आपदा प्रबंधन 1070।"
+  },
+  {
+    "keywords": ["loan", "bank", "credit", "interest", "kcc", "kishan credit card", "mudra", "finance", "money", "borrow"],
+    "en": "Agricultural Loans: Kisan Credit Card (KCC) gives up to ₹3 lakh at 4% interest. PM Mudra Yojana gives business loans up to ₹10 lakh. Contact your nearest bank branch.",
+    "ta": "விவசாய கடன்: கிசான் கிரெடிட் கார்டு (KCC) ₹3 லட்சம் வரை 4% வட்டியில் கடன். PM முத்ரா யோஜனா ₹10 லட்சம் வரை வணிக கடன். உங்கள் அருகிலுள்ள வங்கியை தொடர்பு கொள்ளுங்கள்.",
+    "hi": "कृषि ऋण: किसान क्रेडिट कार्ड (KCC) से 4% ब्याज पर ₹3 लाख तक ऋण। PM मुद्रा योजना में ₹10 लाख तक व्यापार ऋण। नजदीकी बैंक शाखा से संपर्क करें।"
+  },
+  {
+    "keywords": ["soil", "test", "npk", "organic", "compost", "manure", "krishi", "extension", "agriculture department"],
+    "en": "Soil Testing: Get your soil tested at the Krishi Kendra (Agriculture Centre). Ideal NPK ratio for wheat: 120:60:40 kg/hectare. Use compost and vermi-compost to improve soil health.",
+    "ta": "மண் பரிசோதனை: கிருஷி கேந்திரத்தில் மண் பரிசோதனை செய்யுங்கள். கோதுமைக்கு NPK விகிதம்: 120:60:40 கிலோ/ஹெக்டேர். மண் ஆரோக்கியத்திற்கு மண்புழு உரம் பயன்படுத்துங்கள்.",
+    "hi": "मिट्टी परीक्षण: कृषि केंद्र पर मिट्टी जांच कराएं। गेहूं के लिए आदर्श NPK: 120:60:40 किग्रा/हेक्टेयर। मिट्टी स्वास्थ्य के लिए वर्मी-कम्पोस्ट उपयोग करें।"
+  }
+]

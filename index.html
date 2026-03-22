@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Rural Digital Assistant</title>
+    <!-- Primary SEO/Meta -->
+    <meta name="description" content="Voice-enabled AI help for farmers and rural users. Get weather, health tips, and crop information instantly.">
+    <!-- UI Assets -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Professional Header -->
+        <header>
+            <div class="logo-container">
+                <i data-lucide="leaf"></i>
+            </div>
+            <h1>Smart Rural Digital Assistant</h1>
+            <p class="subtitle">Voice-enabled help for farmers and rural users</p>
+        </header>
+
+        <!-- Main Card Container -->
+        <div class="main-card">
+            
+            <!-- Chat Window -->
+            <div class="chat-window" id="chat-window">
+                <!-- Initial Welcome Message -->
+                <div class="message assistant-msg">
+                    <b>Namaste! 🙏</b><br>
+                    I am your digital companion. How can I help you? You can ask about:
+                    <ul style="margin: 5px 0 0 15px; font-size: 13px;">
+                        <li>Weather forecasts 🌦️</li>
+                        <li>Market prices 🌾</li>
+                        <li>Government schemes 🏛️</li>
+                        <li>Health & first aid 🏥</li>
+                        <li>Crop health scan 🌱</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Controls (Tools) Section -->
+            <div class="controls-panel">
+                <div id="preview-container">
+                    <img id="preview-img" src="" alt="Crop Preview">
+                    <div class="remove-preview" onclick="clearPreview()"><i data-lucide="x" style="width:14px;"></i></div>
+                </div>
+
+                <div class="tool-group">
+                    <button class="btn-tool" id="location-btn" onclick="getLocation()">
+                        <i data-lucide="map-pin"></i>
+                        <span>Use My Location</span>
+                    </button>
+                    
+                    <input type="file" id="imageInput" accept="image/*" hidden onchange="handleFileSelect()">
+                    <button class="btn-tool" id="upload-trigger" onclick="document.getElementById('imageInput').click()">
+                        <i data-lucide="camera"></i>
+                        <span>Upload Crop Image</span>
+                    </button>
+                </div>
+                
+                <button class="btn-tool hidden" id="send-img-btn" onclick="uploadImage()" style="background: var(--primary); color: white; border-color: var(--primary);">
+                    <i data-lucide="send"></i>
+                    <span>Analyze Image</span>
+                </button>
+            </div>
+
+            <!-- Mic Section -->
+            <div class="mic-section">
+                <button class="mic-btn" id="mic-btn" onclick="toggleVoice()">
+                    <i data-lucide="mic"></i>
+                </button>
+                <div class="status-label" id="status-label">Speak to ask a question</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built for rural empowerment using AI</p>
+        </footer>
+    </div>
+
+    <!-- Logic -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
