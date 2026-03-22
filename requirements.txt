@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 flask
 gtts
 speechrecognition
 imageio-ffmpeg
-=======
-flask
-gtts
-speechrecognition
-imageio-ffmpeg
->>>>>>> 252c01559f9233eacaec00a12a70d29cc3954147
-openai
+open
